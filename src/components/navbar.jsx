@@ -5,7 +5,7 @@ import { useLoaderData } from "react-router-dom";
 
 const NavBar = ({ userName }) => {
   return (
-    <nav className=" flex justify-between p-2">
+    <nav className=" flex justify-between p-4 ">
       <NavLink to="/">
         {" "}
         <img className="w-10" src="logo.png" alt="budget" />{" "}

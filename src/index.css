@@ -4,6 +4,9 @@
 
 /* base styles */
 @layer components {
+  body {
+    @apply bg-slate-100;
+  }
   h2 {
     @apply text-xl font-semibold py-2;
   }
@@ -26,7 +29,7 @@
   }
 
   .form-section {
-    @apply flex flex-col mx-6 my-5 px-10 py-5 border-dotted border-2 border-fuchsia-600 rounded-lg bg-slate-100 md:w-full;
+    @apply flex flex-col mx-6 my-5 px-10 py-5 border-dotted border-2 border-fuchsia-600 bg-white rounded-lg md:w-full;
   }
 
   #form-btn {
@@ -34,10 +37,10 @@
   }
 
   #budget-btn {
-    @apply text-white border-none rounded-md px-10 py-3 bg-purple-400 w-1/2 mx-auto md:w-1/4;
+    @apply text-white border-none rounded-md px-10 py-3 bg-purple-400 mx-auto w-1/2 md:px-2;
   }
 
   .existing-budgets {
-    @apply flex flex-col border-2 border-purple-600 rounded-3xl  mx-6 mb-6 px-5 py-2 text-purple-600;
+    @apply flex flex-col border-2 border-purple-600 rounded-3xl  mx-6 mb-6 px-5 py-2 text-purple-600  bg-white;
   }
 }

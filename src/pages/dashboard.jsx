@@ -35,10 +35,12 @@ export default function Dashboard() {
                   {" "}
                   Existing Budgets{" "}
                 </h1>
-                {budget.map((bud) => (
-                  // Assigning the whole object to budget and destructure it in budget item
-                  <BudgetItem key={bud.id} budget={bud} />
-                ))}
+                <div className="md:grid md:grid-cols-2 xl:grid-cols-3">
+                  {budget.map((bud) => (
+                    // Assigning the whole object to budget and destructure it in budget item
+                    <BudgetItem key={bud.id} budget={bud} />
+                  ))}
+                </div>
               </section>
             </>
           ) : (
