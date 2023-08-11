@@ -4,9 +4,10 @@ import ExpenseForm from "../components/expenseForm";
 import Intro from "../components/intro";
 import { useLoaderData } from "react-router-dom";
 import BudgetItem from "../components/budgetItem";
+import ExpenseTable from "../components/expenseTable";
 
 export default function Dashboard() {
-  const { userName, budget } = useLoaderData();
+  const { userName, budget, expense } = useLoaderData();
 
   return (
     <main>
@@ -42,6 +43,30 @@ export default function Dashboard() {
                   ))}
                 </div>
               </section>
+              {/*    RECENT EXPENSES */}
+              {expense && expense.length > 0 ? (
+                <section className=" pb-9">
+                  <h1 className="text-4xl font-bold mx-5 my-2">
+                    Recent expenses
+                  </h1>
+                  <ExpenseTable
+                    // to avoid undefined, check for null
+                    budget={budget.length > 0 ? budget : null}
+                    // sort the expense to display latest on the top
+                    expense={expense
+                      .sort((a, b) => b.createdAt - a.createdAt)
+                      .slice(0, 6)}
+                  />
+                  {expense.length > 6 && (
+                    <Link to="expenses" id="form-btn">
+                      {" "}
+                      View all expenses{" "}
+                    </Link>
+                  )}
+                </section>
+              ) : (
+                ""
+              )}
             </>
           ) : (
             <article className="flex flex-col justify-start mx-5 my-3 ">
