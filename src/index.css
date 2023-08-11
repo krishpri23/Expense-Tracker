@@ -45,7 +45,7 @@
   }
 
   table {
-    @apply table-auto w-full border-2 rounded-lg border-blue-50;
+    @apply table-auto w-full border-2 rounded-lg border-blue-50 md:text-xl;
   }
   th {
     @apply pt-4 pb-4 bg-white;

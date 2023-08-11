@@ -14,7 +14,7 @@ export default function Dashboard() {
       {userName ? (
         <div>
           <header>
-            <h1 className="text-5xl font-bold mx-5 my-5 text-left">
+            <h1 className="text-5xl font-bold mx-5 my-5 text-left md:text-6xl">
               Welcome back,{" "}
               <span className="text-orange-500 "> {userName} </span>
             </h1>
@@ -46,7 +46,7 @@ export default function Dashboard() {
               {/*    RECENT EXPENSES */}
               {expense && expense.length > 0 ? (
                 <section className=" pb-9">
-                  <h1 className="text-4xl font-bold mx-5 my-2">
+                  <h1 className="text-3xl font-bold mx-5 my-2 md:text-5xl">
                     Recent expenses
                   </h1>
                   <ExpenseTable
