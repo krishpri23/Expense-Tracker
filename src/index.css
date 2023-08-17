@@ -29,7 +29,7 @@
   }
 
   .form-section {
-    @apply flex flex-col mx-6 my-5 px-10 py-5 border-dotted border-2 border-fuchsia-600 bg-white rounded-lg md:w-full;
+    @apply flex flex-col mx-6 my-5 px-10 py-5 border-dotted border-2 border-fuchsia-600 bg-white rounded-lg  md:w-1/2;
   }
 
   #form-btn {

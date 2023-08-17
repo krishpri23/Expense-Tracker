@@ -35,7 +35,6 @@ export async function dashboardAction({ request }) {
   }
 
   if (_action === "createExpense") {
-    console.log("inside expense action ");
     try {
       createExpense({
         name: values.newExpense,

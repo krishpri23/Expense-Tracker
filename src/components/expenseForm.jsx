@@ -50,8 +50,8 @@ function ExpenseForm({ budget }) {
             required
           />
         </div>
-        <div className="form-div">
-          <label htmlFor="expenseCategory"> Budget category </label>
+        <div className={budget.length === 1 ? "form-div hidden" : "form-div"}>
+          <label htmlFor="expenseCategory "> Budget category </label>
           <select name="expenseCategory" id="expenseCategory" required>
             {budget
               .sort((a, b) => a.createdAt - b.createdAt)
