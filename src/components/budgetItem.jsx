@@ -6,7 +6,7 @@ import {
   formatPercentage,
 } from "../utils/helper";
 
-export default function BudgetItem({ budget }) {
+export default function BudgetItem({ budget, action }) {
   const { id, name, amount } = budget;
 
   const amountSpent = calculateSpentByBudget(id);
@@ -15,7 +15,7 @@ export default function BudgetItem({ budget }) {
   return (
     <div className="existing-budgets">
       {/* title  */}
-      <div className="flex justify-between p-3">
+      <div className="flex gap-5 justify-between p-3">
         <h2 className="p-0">{name}</h2>
         <h3>{formatCurrency(amount)} Budgeted</h3>
       </div>
@@ -35,7 +35,7 @@ export default function BudgetItem({ budget }) {
           {formatCurrency(remainingAmount)} remaining{" "}
         </p>
       </div>
-      <button id="budget-btn"> View Details </button>
+      <button id="budget-btn"> {action} </button>
     </div>
   );
 }

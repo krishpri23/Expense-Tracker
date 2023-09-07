@@ -95,7 +95,7 @@ export const getAllMatchingItems = ({ category, key, value }) => {
 export const deleteExpense = ({ key, id }) => {
   const existingData = fetchData(key);
   if (id) {
-    // expenseId
+    // expenseId, as long as the id does not match keep it in the array
     const newData = existingData.filter((item) => item.id !== id);
     return localStorage.setItem(key, JSON.stringify(newData));
   }

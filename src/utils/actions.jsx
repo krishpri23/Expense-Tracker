@@ -6,6 +6,7 @@ import {
   deleteItem,
   createExpense,
   deleteExpense,
+  getAllMatchingItems,
 } from "./helper";
 import { toast } from "react-toastify";
 import { redirect } from "react-router-dom";
@@ -79,7 +80,7 @@ export function dashboardLoader() {
   return { userName, budget, expense };
 }
 
-export function expenseLoader() {
+export async function expenseLoader() {
   const expense = fetchData("expense");
   return { expense };
 }
@@ -90,6 +91,7 @@ export async function expenseAction({ request }) {
 
   if (_action === "deleteExpense") {
     try {
+      //delete item
       deleteExpense({
         key: "expense",
         id: values.expenseId, // got from input hidden expense.Id
@@ -100,4 +102,16 @@ export async function expenseAction({ request }) {
       throw new Error("Problem deleting expense");
     }
   }
+}
+
+export async function budgetLoader({ params }) {
+  const budget = await getAllMatchingItems({
+    category: "budget",
+    key: "id",
+    value: params.id, //grab the name from the route param added in app.jsx
+  })[0];
+  if (!budget) {
+    throw new Error("Budget you are trying to find not exists");
+  }
+  return { budget };
 }

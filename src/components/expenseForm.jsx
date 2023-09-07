@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useFetcher } from "react-router-dom";
+import { HiMiniPlus } from "react-icons/hi2";
 
 function ExpenseForm({ budget }) {
   const fetcher = useFetcher();
@@ -66,8 +67,16 @@ function ExpenseForm({ budget }) {
           </select>
         </div>
 
-        <button id="form-btn" type="submit" disabled={isSubmitting}>
-          Add expense{" "}
+        <button
+          id="form-btn"
+          type="submit"
+          disabled={isSubmitting}
+          className="flex flex-row gap-3 items-center"
+        >
+          Add expense
+          <div className=" bg-white rounded-3xl p-0.5">
+            <HiMiniPlus className="text-black " />{" "}
+          </div>
         </button>
 
         <input type="hidden" name="_action" value="createExpense" />

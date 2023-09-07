@@ -37,7 +37,7 @@
   }
 
   #budget-btn {
-    @apply text-white border-none rounded-md px-10 py-3 bg-purple-400 mx-auto w-1/2 md:px-2;
+    @apply text-white border-none rounded-md  bg-purple-400 mx-auto px-10 py-3;
   }
 
   .existing-budgets {

@@ -9,6 +9,7 @@ import Dashboard from "./pages/dashboard";
 
 //actions
 import {
+  budgetLoader,
   dashboardAction,
   dashboardLoader,
   expenseAction,
@@ -20,9 +21,9 @@ import Main, { MainLoader } from "./layouts/mainLayout";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ExpenseTable from "./components/expenseTable";
 import ExpensesPage from "./pages/expensesPage";
-import BudgetsPage from "./pages/budgetsPage";
+import BudgetPage from "./pages/budgetPage";
+import Error from "./pages/error";
 
 function App() {
   const router = createBrowserRouter(
@@ -33,14 +34,22 @@ function App() {
           element={<Dashboard />}
           loader={dashboardLoader}
           action={dashboardAction}
+          errorElement={<Error />}
         />
         <Route
           path="expenses"
           element={<ExpensesPage />}
           loader={expenseLoader}
           action={expenseAction}
+          errorElement={<Error />}
         />
-        <Route path="budget/:id" element={<BudgetsPage />} />
+        {/* Route params /:id */}
+        <Route
+          path="budget/:id"
+          element={<BudgetPage />}
+          loader={budgetLoader}
+          errorElement={<Error />}
+        />
         <Route path="*" element={<Error />} />
       </Route>
     )
