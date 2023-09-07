@@ -15,6 +15,7 @@ import {
   dashboardLoader,
   expenseAction,
   expenseLoader,
+  logoutAction,
 } from "./utils/actions";
 
 //layout
@@ -52,6 +53,7 @@ function App() {
           action={budgetAction}
           errorElement={<Error />}
         />
+        <Route path="logout" action={logoutAction} />
         <Route path="*" element={<Error />} />
       </Route>
     )
