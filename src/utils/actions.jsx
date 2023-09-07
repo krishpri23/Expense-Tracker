@@ -13,10 +13,8 @@ import { redirect } from "react-router-dom";
 
 export async function dashboardAction({ request }) {
   const data = await request.formData();
-  console.log(data);
 
   const { _action, ...values } = Object.fromEntries(data);
-  console.log(values);
 
   if (_action === "newUser") {
     try {
@@ -122,6 +120,38 @@ export async function budgetAction({ request }) {
       throw new Error("Problem creating expense");
     }
   }
+}
+
+// delete budget inside view details page
+export async function deleteBudget({ params }) {
+  console.log(params.id);
+  try {
+    deleteItem({
+      key: "budget",
+      id: params.id,
+    });
+
+    //expense connected to this budget
+    const associatedExpenses = getAllMatchingItems({
+      category: "expense",
+      key: "budgetId",
+      value: params.id,
+    });
+
+    associatedExpenses.forEach((expense) => {
+      console.log(expense.id);
+      deleteItem({
+        key: "expense",
+        id: expense.id,
+      });
+    });
+
+    toast.success("Budget deleted! ");
+  } catch (error) {
+    throw new Error("There was a problem deleting your budget");
+  }
+
+  return redirect("/");
 }
 
 export function dashboardLoader() {

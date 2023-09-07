@@ -29,7 +29,7 @@ export default function ExpenseItem({ expense, showBudget }) {
             className="bg-purple-500 px-4 py-2 text-white rounded-3xl "
             to={`/budget/${budget.id}`}
           >
-            {budget.name}{" "}
+            {budget.name}
           </Link>
         </td>
       ) : (

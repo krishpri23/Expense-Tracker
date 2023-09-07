@@ -1,12 +1,15 @@
 // b budgets section
 
+import { Form, Link } from "react-router-dom";
 import {
   calculateSpentByBudget,
   formatCurrency,
   formatPercentage,
 } from "../utils/helper";
 
-export default function BudgetItem({ budget, action }) {
+import { HiOutlineBanknotes, HiTrash } from "react-icons/hi2";
+
+export default function BudgetItem({ budget, showDelete }) {
   const { id, name, amount } = budget;
 
   const amountSpent = calculateSpentByBudget(id);
@@ -35,7 +38,40 @@ export default function BudgetItem({ budget, action }) {
           {formatCurrency(remainingAmount)} remaining{" "}
         </p>
       </div>
-      <button id="budget-btn"> {action} </button>
+      {showDelete ? (
+        <div>
+          <Form
+            method="post"
+            action="delete"
+            onSubmit={(event) => {
+              if (!confirm("Delete budget?")) {
+                event.preventDefault();
+              }
+            }}
+          >
+            <button
+              id="form-btn"
+              className="flex flex-row gap-3 items-center"
+              type="submit"
+            >
+              {" "}
+              <HiTrash />
+              Delete Budget
+            </button>
+          </Form>
+        </div>
+      ) : (
+        <div className="px-2 py-3">
+          <Link
+            id="form-btn"
+            className="flex flex-row gap-4 items-center w-2/6"
+            to={`/budget/${id}`}
+          >
+            <HiOutlineBanknotes className="text-white font-extrabold" />
+            View Details{" "}
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

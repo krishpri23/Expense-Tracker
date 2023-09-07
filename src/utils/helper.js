@@ -4,9 +4,23 @@ export const fetchData = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
 
-//delete item
+//getMatchingItems from local storage- budget overview
+export const getAllMatchingItems = ({ category, key, value }) => {
+  const data = fetchData(category) ?? [];
+  return data.filter((item) => item[key] === value);
+};
 
-export const deleteItem = ({ key }) => {
+// delete item from local storage
+export const deleteItem = ({ key, id }) => {
+  const existingData = fetchData(key);
+  if (id) {
+    // if the id does not match, store the data to db leaving out unmatched id
+    const newData = existingData.filter((item) => {
+      item.id !== id;
+    });
+
+    return localStorage.setItem(key, JSON.stringify(newData));
+  }
   return localStorage.removeItem(key);
 };
 
@@ -83,13 +97,6 @@ export const formatPercentage = (amount) => {
 
 //format date
 export const formatDate = (date) => new Date(date).toLocaleDateString();
-
-//getMatchingItems - budget overview
-
-export const getAllMatchingItems = ({ category, key, value }) => {
-  const data = fetchData(category) ?? [];
-  return data.filter((item) => item[key] === value);
-};
 
 // delete expense item from recent expense
 export const deleteExpense = ({ key, id }) => {

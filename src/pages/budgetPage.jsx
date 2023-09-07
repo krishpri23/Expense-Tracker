@@ -14,7 +14,7 @@ export default function BudgetsPage() {
         <span className="text-purple-500">{budget.name}</span> Overview
       </h1>
       <div className=" lg:flex lg:flex-row gap-5 justify-around">
-        <BudgetItem budget={budget} action="Delete Budget" />
+        <BudgetItem budget={budget} showDelete={true} />
         {/* since we sort the budget, send it as array */}
         <ExpenseForm budget={[budget]} />
       </div>

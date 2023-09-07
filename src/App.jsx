@@ -16,6 +16,7 @@ import {
   expenseAction,
   expenseLoader,
   logoutAction,
+  deleteBudget,
 } from "./utils/actions";
 
 //layout
@@ -52,7 +53,9 @@ function App() {
           loader={budgetLoader}
           action={budgetAction}
           errorElement={<Error />}
-        />
+        >
+          <Route path="delete" action={deleteBudget} />
+        </Route>
         <Route path="logout" action={logoutAction} />
         <Route path="*" element={<Error />} />
       </Route>
