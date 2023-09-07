@@ -17,7 +17,7 @@ export default function Error() {
             <div>
               <HiArrowUturnLeft />
             </div>
-            <Link to="../">Go back </Link>
+            <Link to="./">Go back </Link>
             {/* <Link to="/"> Go home</Link> */}
           </button>
           <button className="flex flex-row gap-2 items-center bg-black text-white px-3 py-2 rounded-xl">

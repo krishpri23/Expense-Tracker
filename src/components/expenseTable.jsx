@@ -1,7 +1,7 @@
 import React from "react";
 import ExpenseItem from "./expenseItem";
 
-export default function ExpenseTable({ expense, budget }) {
+export default function ExpenseTable({ expense, showBudget = true }) {
   return (
     <div className="mx-auto my-3 px-7">
       {expense.length > 6 ? (
@@ -12,9 +12,11 @@ export default function ExpenseTable({ expense, budget }) {
       <table>
         <thead>
           <tr>
-            {["Name", "Amount", "Date", "Budget", " "].map((i, index) => (
-              <th key={index}> {i} </th>
-            ))}
+            {["Name", "Amount", "Date", showBudget ? "Budget" : "", " "].map(
+              (i, index) => (
+                <th key={index}> {i} </th>
+              )
+            )}
           </tr>
         </thead>
         <tbody>
@@ -22,7 +24,7 @@ export default function ExpenseTable({ expense, budget }) {
             .sort((a, b) => b.createdAt - a.createdAt)
             .map((item) => (
               <tr key={item.id}>
-                <ExpenseItem expense={item} />
+                <ExpenseItem expense={item} showBudget={showBudget} />
               </tr>
             ))}
         </tbody>

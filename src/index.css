@@ -41,7 +41,7 @@
   }
 
   .existing-budgets {
-    @apply flex flex-col border-2 border-purple-600 rounded-3xl  mx-6 mb-6 px-5 py-2 text-purple-600  bg-white;
+    @apply flex flex-col gap-3 border-2  border-purple-600 rounded-3xl  mx-6 mb-6 px-5 py-2 text-purple-600  bg-white;
   }
 
   table {
@@ -54,6 +54,6 @@
     @apply text-center border border-blue-100;
   }
   td {
-    @apply p-4 bg-white;
+    @apply p-4 bg-red-50;
   }
 }

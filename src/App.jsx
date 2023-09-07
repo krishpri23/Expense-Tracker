@@ -9,6 +9,7 @@ import Dashboard from "./pages/dashboard";
 
 //actions
 import {
+  budgetAction,
   budgetLoader,
   dashboardAction,
   dashboardLoader,
@@ -48,6 +49,7 @@ function App() {
           path="budget/:id"
           element={<BudgetPage />}
           loader={budgetLoader}
+          action={budgetAction}
           errorElement={<Error />}
         />
         <Route path="*" element={<Error />} />

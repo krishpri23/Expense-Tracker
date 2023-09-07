@@ -72,19 +72,7 @@ export async function logoutAction() {
   return redirect("/");
 }
 
-export function dashboardLoader() {
-  const userName = fetchData("userName");
-  const budget = fetchData("budget");
-  const expense = fetchData("expense");
-
-  return { userName, budget, expense };
-}
-
-export async function expenseLoader() {
-  const expense = fetchData("expense");
-  return { expense };
-}
-
+//expense form
 export async function expenseAction({ request }) {
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
@@ -104,14 +92,68 @@ export async function expenseAction({ request }) {
   }
 }
 
+// budget page action
+export async function budgetAction({ request }) {
+  const data = await request.formData();
+  const { _action, ...values } = Object.fromEntries(data);
+
+  if (_action === "deleteExpense") {
+    try {
+      //delete item
+      deleteExpense({
+        key: "expense",
+        id: values.expenseId, // got from input hidden expense.Id
+      });
+
+      return toast.success("Expense deleted");
+    } catch (e) {
+      throw new Error("There was a problem deleting expense");
+    }
+  }
+  if (_action === "createExpense") {
+    try {
+      createExpense({
+        name: values.newExpense,
+        amount: values.expenseAmount,
+        budgetId: values.expenseCategory,
+      });
+      return toast.success("expense created ");
+    } catch (e) {
+      throw new Error("Problem creating expense");
+    }
+  }
+}
+
+export function dashboardLoader() {
+  const userName = fetchData("userName");
+  const budget = fetchData("budget");
+  const expense = fetchData("expense");
+
+  return { userName, budget, expense };
+}
+
+export async function expenseLoader() {
+  const expense = fetchData("expense");
+  return { expense };
+}
+
 export async function budgetLoader({ params }) {
   const budget = await getAllMatchingItems({
     category: "budget",
     key: "id",
     value: params.id, //grab the name from the route param added in app.jsx
   })[0];
+
+  // to load expenses on budget page
+  const expenses = await getAllMatchingItems({
+    category: "expense",
+    key: "budgetId",
+    value: params.id, //grab the name from the route param added in app.jsx
+  }); // need all of the expenses in the expense array
+
   if (!budget) {
     throw new Error("Budget you are trying to find not exists");
   }
-  return { budget };
+
+  return { budget, expenses };
 }

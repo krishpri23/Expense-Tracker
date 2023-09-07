@@ -1,4 +1,4 @@
-// Existing budgets section
+// b budgets section
 
 import {
   calculateSpentByBudget,
@@ -13,9 +13,9 @@ export default function BudgetItem({ budget, action }) {
   const remainingAmount = amount - amountSpent;
 
   return (
-    <div className="existing-budgets">
+    <div className="existing-budgets ">
       {/* title  */}
-      <div className="flex gap-5 justify-between p-3">
+      <div className="flex gap-5 justify-between p-3 ">
         <h2 className="p-0">{name}</h2>
         <h3>{formatCurrency(amount)} Budgeted</h3>
       </div>
